@@ -8,6 +8,10 @@ public class PolicyDemo {
     public static void main(String[] args) {
         // List to store all Policy objects
         ArrayList<Policy> policies = new ArrayList<>();
+        
+        // Counters for smoker and non-smoker policies
+        int smokerCount = 0;
+        int nonSmokerCount = 0;
 
         try {
             // Open the file
@@ -29,6 +33,13 @@ public class PolicyDemo {
                 // Create a Policy object and add it to the list
                 Policy policy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
                 policies.add(policy);
+
+                // Count smoker and non-smoker policies
+                if ("smoker".equalsIgnoreCase(smokingStatus)) {
+                    smokerCount++;
+                } else if ("non-smoker".equalsIgnoreCase(smokingStatus)) {
+                    nonSmokerCount++;
+                }
 
                 // Move to the next set of data (skip any empty lines if present)
                 if (fileScanner.hasNextLine()) {
@@ -53,6 +64,10 @@ public class PolicyDemo {
                 System.out.printf("Policy Price: $%.2f\n", policy.calculatePolicyPrice());
                 System.out.println();
             }
+
+            // Display the counts of smoker and non-smoker policies
+            System.out.println("The number of policies with a smoker is: " + smokerCount);
+            System.out.println("The number of policies with a non-smoker is: " + nonSmokerCount);
 
         } catch (FileNotFoundException e) {
             System.out.println("The file 'PolicyInformation.txt' was not found.");
