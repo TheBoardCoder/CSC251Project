@@ -8,7 +8,9 @@ public class Policy {
     private String policyNumber;
     private String providerName;
     private PolicyHolder policyHolder;
-
+    
+    private static int policyCount = 0;
+    
     private static final double BASE_FEE = 600;
     private static final double AGE_FEE = 75;
     private static final double SMOKER_FEE = 100;
@@ -44,6 +46,7 @@ public class Policy {
         double weight = Double.parseDouble(scanner.nextLine());
 
         policyHolder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
+        policyCount++;
     }
 
     /**
@@ -57,9 +60,14 @@ public class Policy {
         this.policyNumber = policyNumber;
         this.providerName = providerName;
         this.policyHolder = policyHolder;
+        policyCount++;
     }
-
+    
     // Getter and setter methods
+    public static int getPolicyCount() {
+        return policyCount;
+    }
+    
     public String getPolicyNumber() {
         return policyNumber;
     }
