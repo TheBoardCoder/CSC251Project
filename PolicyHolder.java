@@ -94,4 +94,23 @@ public class PolicyHolder {
     public double calculateBMI() {
         return (weight * BMI_MULTIPLIER) / (height * height);
     }
+    
+    /**
+     * Provides a string representation of the PolicyHolder object.
+     * 
+     * @return a string representation of the PolicyHolder
+     */
+    @Override
+    public String toString() {
+        return "PolicyHolder{" +
+               "First Name='" + firstName + '\'' +
+               ", Last Name='" + lastName + '\'' +
+               ", Age=" + age +
+               ", Smoking Status='" + smokingStatus + '\'' +
+               ", Height=" + height + " inches" +
+               ", Weight=" + weight + " pounds" +
+               ", BMI=" + String.format("%.2f", calculateBMI()) +
+               '}';
+    }
 }
+
