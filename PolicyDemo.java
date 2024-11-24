@@ -30,8 +30,11 @@ public class PolicyDemo {
                 double height = Double.parseDouble(fileScanner.nextLine().trim());
                 double weight = Double.parseDouble(fileScanner.nextLine().trim());
 
-                // Create a Policy object and add it to the list
-                Policy policy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
+                // Create a PolicyHolder object
+                PolicyHolder policyHolder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
+               
+                // Create a Policy object with the PolicyHolder object
+                Policy policy = new Policy(policyNumber, providerName, policyHolder);
                 policies.add(policy);
 
                 // Count smoker and non-smoker policies
@@ -51,24 +54,15 @@ public class PolicyDemo {
 
             // Display information about each policy
             for (Policy policy : policies) {
-                System.out.println("\nPolicy Information:");
-                System.out.println("Policy Number: " + policy.getPolicyNumber());
-                System.out.println("Provider Name: " + policy.getProviderName());
-                System.out.println("Policyholder First Name: " + policy.getPolicyholderFirstName());
-                System.out.println("Policyholder Last Name: " + policy.getPolicyholderLastName());
-                System.out.println("Policyholder Age: " + policy.getPolicyholderAge());
-                System.out.println("Smoking Status: " + policy.getSmokingStatus());
-                System.out.println("Policyholder Height (in inches): " + policy.getPolicyholderHeight());
-                System.out.println("Policyholder Weight (in pounds): " + policy.getPolicyholderWeight());
-                System.out.printf("Policyholder BMI: %.2f\n", policy.calculateBMI());
-                System.out.printf("Policy Price: $%.2f\n", policy.calculatePolicyPrice());
+                System.out.println(policy);
                 System.out.println();
             }
 
             // Display the counts of smoker and non-smoker policies
+            System.out.println("Total number of policy objects created: " + Policy.getPolicyCount());
             System.out.println("The number of policies with a smoker is: " + smokerCount);
             System.out.println("The number of policies with a non-smoker is: " + nonSmokerCount);
-
+            
         } catch (FileNotFoundException e) {
             System.out.println("The file 'PolicyInformation.txt' was not found.");
             e.printStackTrace();
